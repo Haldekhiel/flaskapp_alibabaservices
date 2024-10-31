@@ -7,7 +7,7 @@ import logging
 app = Flask(__name__)
 
 # Redis setup
-r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"),username=os.environ.get("REDIS_USER"), port=6379,password=os.environ.get("REDIS_PASSWORD"),decode_responses=True, db=0)
+r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"), port=6379,password=os.environ.get("REDIS_PASSWORD"),decode_responses=True, db=0)
 
 # MySQL setup
 def get_db():
