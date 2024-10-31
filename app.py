@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 
 # Redis setup
-r = redis.StrictRedis(os.environ.get("REDIS_HOST"),password=os.environ.get("REDIS_PASSWORD"), port=6379, db=0)
+r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"),username="default", port=6379,password=os.environ.get("REDIS_PASSWORD"), db=0)
 
 # MySQL setup
 def get_db():
