@@ -7,8 +7,25 @@ import time
 app = Flask(__name__)
 
 # Redis setup
-r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"),username="default", port=6379,password=os.environ.get("REDIS_PASSWORD"), db=0)
+# r = redis.StrictRedis(host=os.environ.get("REDIS_HOST"),username="default", port=6379,password=os.environ.get("REDIS_PASSWORD"), db=0)
 
+while True:
+    try:
+        r = redis.StrictRedis(
+            host=os.environ.get("REDIS_HOST"),
+            port=6379,
+            password=os.environ.get("REDIS_PASSWORD"),
+            db=0,
+            decode_responses=True
+        )
+        r.ping()
+        print("Connected to Redis successfully.")
+        break
+    except redis.exceptions.AuthenticationError:
+        print("Invalid username-password pair.")
+        time.sleep(5)
+    except redis.exceptions.ConnectionError:
+        print("Waiting for Redis connection...")
 # MySQL setup
 def get_db():
     conn = mysql.connector.connect(
