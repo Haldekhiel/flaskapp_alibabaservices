@@ -1,13 +1,12 @@
 # Flask Application Repository
+This project demonstrates a containerized Flask application integrated with Redis and MySQL. The application leverages Alibaba Cloud services for Redis and MySQL, with infrastructure as code (IaC) managed by Terraform.
 
-Welcome to the Flask Application Repository! This project showcases a containerized Flask application integrated with Redis and MySQL, utilizing Docker and GitHub Actions for CI/CD.
 
-## Features
-- **Containerization**: Dockerfile for the Flask Application to ensure easy deployment .
-- **Multi-Service Setup**: 
-  - **Flask Application**: Built from the Dockerfile.
-  - **Redis**: Official Redis image for caching.
-  - **MySQL**: Official MySQL image for data storage.
-- **CI/CD Pipeline**: 
-  - **GitHub Actions**: Automated testing, image building, and deployment triggered on push and pull requests.
-# flaskapp_alibabaservices
+# Infrastructure main components in Alibaba Cloud.
+
+Virtual Private Cloud (VPC): Secure, isolated network with subnets for public and private resources.
+NAT Gateway: Allows private subnet instances to access the internet securely.
+Network Load Balancer (NLB): Distributes incoming requests to Flask instances for load balancing.
+Elastic Compute Service (ECS): Instances hosting the Flask application, with private IPs accessible through NLB.
+Managed Redis (KVStore): Redis instance for caching, with restricted access from the private subnet.
+Managed MySQL (RDS): MySQL database instance with a private endpoint, accessible only from within the VPC.
